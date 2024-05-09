@@ -25,6 +25,7 @@ namespace com.meta.xr.colocation.samples.fusion
         private OVRCameraRig _ovrCameraRig;
         private SharedAnchorManager _sharedAnchorManager;
         private AutomaticColocationLauncher _colocationLauncher;
+        private ObjectSpawner _objectSpawner;
 
         private void Awake()
         {
@@ -64,6 +65,15 @@ namespace com.meta.xr.colocation.samples.fusion
             _colocationLauncher.ColocationReady += OnColocationReady;
             _colocationLauncher.ColocationFailed += OnColocationFailed;
             _colocationLauncher.ColocateAutomatically();
+
+            /*_objectSpawner.Init(
+                NetworkAdapter.NetworkData,
+                NetworkAdapter.NetworkMessenger,
+                _sharedAnchorManager,
+                _ovrCameraRig.gameObject,
+                myPlayerId,
+                myOculusId
+            );  */
         }
 
         private void OnColocationReady()
