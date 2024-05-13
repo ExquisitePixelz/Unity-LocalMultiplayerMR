@@ -23,7 +23,7 @@ namespace com.meta.xr.colocation.samples.fusion
         private ulong _myPlayerId;
         private ulong _myOculusId;
         private OVRCameraRig _ovrCameraRig;
-        private SharedAnchorManager _sharedAnchorManager;
+        public SharedAnchorManager _sharedAnchorManager;
         private AutomaticColocationLauncher _colocationLauncher;
         private ObjectSpawner _objectSpawner;
 
@@ -65,15 +65,6 @@ namespace com.meta.xr.colocation.samples.fusion
             _colocationLauncher.ColocationReady += OnColocationReady;
             _colocationLauncher.ColocationFailed += OnColocationFailed;
             _colocationLauncher.ColocateAutomatically();
-
-            /*_objectSpawner.Init(
-                NetworkAdapter.NetworkData,
-                NetworkAdapter.NetworkMessenger,
-                _sharedAnchorManager,
-                _ovrCameraRig.gameObject,
-                myPlayerId,
-                myOculusId
-            );  */
         }
 
         private void OnColocationReady()

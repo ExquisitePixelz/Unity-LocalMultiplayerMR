@@ -1,13 +1,12 @@
-using com.meta.xr.colocation;
+/*using com.meta.xr.colocation;
 using com.meta.xr.colocation.fusion;
 using Fusion;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Meta.XR.BuildingBlocks
+namespace com.meta.xr.colocation.samples.fusion
 {
     public class ShareAnchors : NetworkBehaviour
     {
@@ -40,3 +39,4 @@ namespace Meta.XR.BuildingBlocks
     }
 }
 
+*/
