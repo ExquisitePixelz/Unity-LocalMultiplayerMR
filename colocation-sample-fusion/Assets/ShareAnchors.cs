@@ -1,43 +1,48 @@
-/*using com.meta.xr.colocation;
-using com.meta.xr.colocation.fusion;
 using Fusion;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace com.meta.xr.colocation.samples.fusion
+namespace com.meta.xr.colocation
 {
     public class ShareAnchors : NetworkBehaviour
     {
+        private GameObject _cameraRig;
+        private ulong _myPlayerId;
+        private ulong _myOculusId;
+        private INetworkData _networkData;
+        private INetworkMessenger _networkMessenger;
         private SharedAnchorManager _sharedAnchorManager;
-        public FusionNetworkData _fusionNetworkData;
-        public GameObject[] spawnables;
-        public Transform handAnchor;
-        private List<OVRSpatialAnchor> _OVRSpatialAnchors = new();
-        private List<OVRSpaceUser> _OVRSpaceUsers = new();
 
-        // Start is called before the first frame update
-        void Awake()
+        public List<Player> players;
+        public bool initialised = false;
+
+        public void Init(
+        INetworkData networkData,
+        INetworkMessenger networkMessenger,
+        SharedAnchorManager sharedAnchorManager,
+        GameObject cameraRig,
+        ulong myPlayerId,
+        ulong myOculusId
+)
         {
-            _sharedAnchorManager = FindObjectOfType<SharedAnchorManager>();
-            _fusionNetworkData = FindObjectOfType<FusionNetworkData>();
+            _networkData = networkData;
+            _networkMessenger = networkMessenger;
+            _sharedAnchorManager = sharedAnchorManager;
+            _cameraRig = cameraRig;
+            _myPlayerId = myPlayerId;
+            _myOculusId = myOculusId;
+            initialised = true;
         }
 
-        // Update is called once per frame
-        public void SpawnObjectAndShareSpatialAnchors(GameObject SpawnedObject)
+        private void Update()
         {
-            _sharedAnchorManager.InstantiateSpatialAnchor(SpawnedObject, handAnchor.position, handAnchor.rotation);
-            _OVRSpatialAnchors.Add(SpawnedObject.GetComponent<OVRSpatialAnchor>());
-            _sharedAnchorManager.ShareSpatialAnchors(_OVRSpatialAnchors, _sharedspatialAnchorCore._userShareList);
-
-
-            //_spatialAnchorCore.ShareSpatialAnchors();
-
-
+            if (initialised)
+            {
+                players = _networkData.GetAllPlayers();
+            }
         }
     }
 }
 
 
-*/
+
